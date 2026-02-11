@@ -91,6 +91,6 @@ class GenieConan(ConanFile):
     def package_info(self):
         self.cpp_info.libdirs = []
         self.cpp_info.includedirs = []
-        self.buildenv_info.append_path("PATH", os.path.join(self.package_folder, "bin"))
+        
         if self.settings.build_type == "Debug":
             self.buildenv_info.append_path("PREMAKE_PATH", os.path.join(self.package_folder, "res"))
