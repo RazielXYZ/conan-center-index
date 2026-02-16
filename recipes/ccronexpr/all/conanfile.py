@@ -1,10 +1,9 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeToolchain, cmake_layout
-from conan.tools.files import get
-from conan.tools.files import copy
+from conan.tools.files import get, copy
 import os
 
-required_conan_version = ">=2.0.0"
+required_conan_version = ">=2.1"
 
 
 class ccronexprConan(ConanFile):
