@@ -98,9 +98,9 @@ class RocksDBConan(ConanFile):
         if is_msvc(self):
             if self.version >= Version("10.7.0"):
                 if Version(self.settings.compiler.version) < "192":
-                    raise ConanInvalidConfiguration("Rocksdb >= 10.7.0 requires MSVC version >= 192")
+                    raise ConanInvalidConfiguration("Rocksdb requires MSVC version >= 192")
             elif Version(self.settings.compiler.version) < "191":
-                raise ConanInvalidConfiguration("Rocksdb < 10.7.0 requires MSVC version >= 191")
+                raise ConanInvalidConfiguration("Rocksdb requires MSVC version >= 191")
 
         if self.options.shared and self.options.with_folly:
             # https://github.com/facebook/rocksdb/blob/v10.5.1/CMakeLists.txt#L603
