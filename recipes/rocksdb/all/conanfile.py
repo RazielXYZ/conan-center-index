@@ -137,18 +137,11 @@ class RocksDBConan(ConanFile):
         tc.variables["WITH_JEMALLOC"] = self.options.with_jemalloc
 
         tc.variables["ROCKSDB_BUILD_SHARED"] = self.options.shared
-        tc.variables["ROCKSDB_LIBRARY_EXPORTS"] = self.settings.os == "Windows" and self.options.shared
-        tc.variables["ROCKSDB_DLL" ] = self.settings.os == "Windows" and self.options.shared
         tc.variables["USE_RTTI"] = self.options.use_rtti
-        if not bool(self.options.enable_sse):
+        if not bool(self.options.enable_sse) or self.options.enable_sse == "sse42":
             tc.variables["PORTABLE"] = True
-            tc.variables["FORCE_SSE42"] = False
-        elif self.options.enable_sse == "sse42":
-            tc.variables["PORTABLE"] = True
-            tc.variables["FORCE_SSE42"] = True
         elif self.options.enable_sse == "avx2":
             tc.variables["PORTABLE"] = False
-            tc.variables["FORCE_SSE42"] = False
         # not available yet in CCI
         tc.variables["WITH_NUMA"] = False
         tc.generate()
